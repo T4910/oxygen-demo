@@ -21,16 +21,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main className="min-h-screen">
-        <Header />
-        <div className="w-full min-h-screen flex items-center lg:pl-32">
-          <div className="bg-white bg-opacity-95 backdrop-filter backdrop-blur-sm rounded-lg shadow-xl w-full max-w-md p-8">
-            <h1 className="text-2xl font-bold mb-1">Get A Loan In 5 Minutes</h1>
-            <div className="underline-custom"></div>
-              {children}
+          <Header />
+          <div className="w-full min-h-[500px] flex items-center max-lg:justify-center pt-[13dvh] lg:pl-32">
+            <div className="bg-white bg-opacity-95 backdrop-filter backdrop-blur-sm rounded-lg shadow-xl w-full max-w-md md:max-w-xl lg:max-w-md p-8">
+              <h1 className="text-2xl font-bold mb-1">Get A Loan In 5 Minutes</h1>
+              <div className="underline-custom"></div>
+                {children}
+            </div>
           </div>
-        </div>
-        <Footer />
-      </main>
+          <Footer />
+        </main>
       </body>
     </html>
   );
