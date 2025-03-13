@@ -1,15 +1,23 @@
 'use client';
 
+import { useState } from 'react';
+import VideoCapture from './VideoCapture';
+
 export default function VideoAttestation() {
+  const [ready, setReady] = useState(false);
+
   const handleReady = () => {
-    console.log("User is ready to start the video attestation.");
-    // Add logic to proceed to the video recording page
+    setReady(true);
   };
 
   const handleSkip = () => {
     console.log("User chose to skip the video attestation.");
     // Add logic to skip the video attestation
   };
+
+  if (ready) {
+    return <VideoCapture />;
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -21,14 +29,14 @@ export default function VideoAttestation() {
         <li>Make sure your camera is well positioned.</li>
         <li>Kindly read the paragraph that will be shown on the recording page.</li>
         <li>Be audible enough.</li>
-        <li>Click "I'm ready" when you are ready to start.</li>
+        <li>Click “I’m ready” when you are ready to start.</li>
       </ul>
 
       <button
         onClick={handleReady}
         className="w-full bg-blue-800 text-white py-3 rounded font-medium hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mb-4"
       >
-        I'm ready
+        I’m ready
       </button>
 
       <button
