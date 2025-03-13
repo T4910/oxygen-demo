@@ -13,11 +13,11 @@ export default function SuccessComponent() {
         <p className="text-lg font-semibold mb-2">Loan application successful!</p>
         <a href="/application-approval" className="text-blue-600 hover:underline">Return to application page</a>
       </div>
-      <div className="mt-8">
-        <p className="text-gray-700 mb-2">You can also download the Oxygen App on your phone to apply:</p>
+      <div className="mt-4">
+        <p className="text-gray-700">You can also download the Oxygen App on your phone to apply:</p>
         <div className="flex justify-center space-x-4">
-          <img src="/google-play-badge.png" alt="Get it on Google Play" className="h-10" />
-          <img src="/app-store-badge.png" alt="Download on the App Store" className="h-10" />
+          <img src="/google-play-badge.svg" alt="Get it on Google Play" className="w-24" />
+          <img src="/app-store-badge.svg" alt="Download on the App Store" className="w-24" />
         </div>
       </div>
     </div>
