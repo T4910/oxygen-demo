@@ -3,6 +3,7 @@
 import PaymentPlanBasic from '@/components/PaymentPlanBasic';
 import PaymentPlanDetailed from '@/components/PaymentPlanDetailed';
 import { useLoanStore } from '@/store/loanStore';
+import { useState } from 'react';
 
 export default function LoanForm() {
   // Get state and actions from Zustand store
@@ -10,22 +11,29 @@ export default function LoanForm() {
     employer, 
     amount, 
     duration, 
-    step, 
     paymentPlanData,
     setEmployer,
     setAmount,
-    setDuration,
-    nextStep
+    setDuration
   } = useLoanStore();
+
+  // Local step management
+  const [step, setStep] = useState(1);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Move to next step
-    nextStep();
-    
-    // Final submission logic can stay here
-    if (step === 3) {
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      // Final submission logic
       console.log({ employer, amount, duration });
+    }
+  };
+
+  const handleBack = () => {
+    if (step > 1) {
+      setStep(step - 1);
     }
   };
 

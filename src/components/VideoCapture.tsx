@@ -31,8 +31,10 @@ export default function VideoCapture() {
   }, []);
 
   const stopVideoStream = () => {
+    console.log('stopping video stream');
     if (streamRef.current) {
       streamRef.current.getTracks().forEach(track => track.stop());
+      console.log('video stream stopped');
     }
   };
 

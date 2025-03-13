@@ -5,8 +5,9 @@ type CustomerInfo = {
   lastName: string
   email: string
   phoneNumber: string
+  ippiNumber: string
   bvn: string
-  bank: string
+  stateOfOrigin: string
 }
 
 type LoanState = {
@@ -55,7 +56,8 @@ export const useLoanStore = create<LoanState>((set) => ({
     email: '',
     phoneNumber: '',
     bvn: '',
-    bank: ''
+    ippiNumber: '',
+    stateOfOrigin: ''
   },
   setEmployer: (employer) => set({ employer }),
   setAmount: (amount) => set({ amount }),
