@@ -1,8 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 
 export default function VideoReview() {
+  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleSubmit = () => {
@@ -12,6 +14,7 @@ export default function VideoReview() {
 
   const handleRedo = () => {
     console.log("Redo the video.");
+    router.refresh();
     // Add logic to redo the video recording
   };
 

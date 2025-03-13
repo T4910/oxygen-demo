@@ -21,7 +21,7 @@ export default function OtpVerification({
   
   // Initialize refs when component mounts
   useEffect(() => {
-    inputRefs.current = Array(6).fill(0).map(() => createRef<HTMLInputElement>());
+    inputRefs.current = Array(6).fill(null).map(() => createRef<HTMLInputElement>());
   }, []);
 
   const handleChange = (index: number, value: string) => {
@@ -72,7 +72,7 @@ export default function OtpVerification({
       setTimeout(() => {
         setLoading(false);
         setVerified(true);
-      }, 2000);
+      }, 3000);
     }
   };
 
@@ -89,12 +89,12 @@ export default function OtpVerification({
       </div>
 
       <div className="flex justify-center space-x-2 mb-2">
-        {[...Array(6)].map((_, index) => (
+        {otp.map((digit, index) => (
           <input
             key={index}
             ref={inputRefs.current[index]}
             type="text"
-            value={otp[index]}
+            value={digit}
             onChange={(e) => handleChange(index, e.target.value)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             onPaste={index === 0 ? handlePaste : undefined}

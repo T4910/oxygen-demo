@@ -8,6 +8,7 @@ export default function VideoCapture() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [recordingDone, setRecordingDone] = useState(false);
   const { paymentPlanData: { loanAmount, monthlyPayment, duration, interestRate, repaymentDate }, customerInfo: { firstName } } = useLoanStore();
+  const [error, setError] = useState<string | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
@@ -18,8 +19,9 @@ export default function VideoCapture() {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-      } catch (error) {
-        console.error("Error accessing camera:", error);
+      } catch (err) {
+        console.error("Error accessing camera:", err);
+        setError("Unable to access the camera. Please ensure your device has a camera and you have granted permission.");
       }
     };
 
@@ -49,24 +51,38 @@ export default function VideoCapture() {
 
   return (
     <div className="w-full max-w-md mx-auto text-center">
-      <video ref={videoRef} autoPlay className="w-full h-40 bg-black mb-1"></video>
-      <div className="">
-        <button
-          onClick={handleRecordingDone}
-          className="size-12 bg-red-500 rounded-full"
-        ></button>
-      </div>
-      <div className="text-justify">
-        <p className="text-xs mb-1">
-            I, "{firstName}", hereby accept the loan of "{loanAmount} FOR {duration} months", 
-            with a monthly repayment of "{monthlyPayment}" naira from Oxygen dated "{repaymentDate}".
-        </p>
-        <p className="text-xs">
-            I agree to the terms and conditions communicated on the loan offer, that loan repayments, 
-            liquidation payment will not be paid into any account apart from the companies account and 
-            I AM NOT PAYING ANY AGENT.
-        </p>
-      </div>
+      {error ? (
+        <>
+          <div className="text-red-600 mb-4">{error}</div>
+          <button
+            onClick={handleRecordingDone}
+            className="text-blue-600 text-center w-full hover:underline"
+          >
+            Skip
+          </button>
+        </>
+      ) : (
+        <>
+          <video ref={videoRef} autoPlay className="w-full h-64 bg-black mb-4"></video>
+          <div className="">
+            <button
+              onClick={handleRecordingDone}
+              className="size-12 bg-red-500 rounded-full"
+            ></button>
+          </div>
+          <div className="text-justify">
+            <p className="text-xs mb-1">
+                I, "{firstName}", hereby accept the loan of "{loanAmount} FOR {duration} months", 
+                with a monthly repayment of "{monthlyPayment}" naira from Oxygen dated "{repaymentDate}".
+            </p>
+            <p className="text-xs">
+                I agree to the terms and conditions communicated on the loan offer, that loan repayments, 
+                liquidation payment will not be paid into any account apart from the companies account and 
+                I AM NOT PAYING ANY AGENT.
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 } 
