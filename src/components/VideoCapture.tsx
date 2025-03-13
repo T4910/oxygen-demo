@@ -63,7 +63,7 @@ export default function VideoCapture() {
         </>
       ) : (
         <>
-          <video ref={videoRef} autoPlay className="w-full h-64 bg-black mb-4"></video>
+          <video ref={videoRef} autoPlay className="w-full h-40 bg-black mb-4"></video>
           <div className="">
             <button
               onClick={handleRecordingDone}
